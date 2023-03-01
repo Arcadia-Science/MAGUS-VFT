@@ -1,7 +1,8 @@
 '''
 Created on May 29, 2020
-
 @author: Vlad
+
+Modified Mar 1, 2023
 '''
 
 import os
@@ -17,7 +18,7 @@ from magus_configuration import Configs
 
 '''
 Different options for estimating a guide tree.
-The main ones are FastTree (for accuracy) and Clustal Omega's mbed (for speed).
+The main ones are VeryFastTree or FastTree (for accuracy) and Clustal Omega's mbed (for speed).
 '''
 
 def buildInitialTree(context, workingDir, treeType):
@@ -36,7 +37,12 @@ def buildInitialTree(context, workingDir, treeType):
     
     time1 = time.time() 
     
-    if treeType is None or treeType.lower() == "fasttree": 
+    if treeType is None or treeType.lower() == "veryfasttree": 
+        Configs.log("Building PASTA-style VeryFastTree initial tree on {} with skeleton size {}..".format(context.sequencesPath, Configs.decompositionSkeletonSize))
+        alignPath = os.path.join(tempDir, "initial_align.txt")
+        buildInitialAlignment(context.unalignedSequences, tempDir, Configs.decompositionSkeletonSize, None, alignPath)
+        external_tools.runVeryFastTree(alignPath, tempDir, outputTreePath, "normal", Configs.numCores).run()
+    elif treeType is None or treeType.lower() == "fasttree": 
         Configs.log("Building PASTA-style FastTree initial tree on {} with skeleton size {}..".format(context.sequencesPath, Configs.decompositionSkeletonSize))
         alignPath = os.path.join(tempDir, "initial_align.txt")
         buildInitialAlignment(context.unalignedSequences, tempDir, Configs.decompositionSkeletonSize, None, alignPath)
