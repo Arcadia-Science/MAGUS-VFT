@@ -1,7 +1,8 @@
 '''
 Created on Apr 14, 2020
-
 @author: Vlad
+
+Modified Mar 1, 2023 by austinhpatton
 '''
 
 from gettext import find
@@ -36,7 +37,7 @@ class Configs:
     subsetPaths = None
     subalignmentPaths = None
     backbonePaths = None
-    guideTree = "fasttree"
+    guideTree = "veryfasttree"
     outputPath = None
     dataType = None
     
@@ -60,7 +61,7 @@ class Configs:
     constrain = True
     onlyGuideTree = False
     recurse = True
-    recurseGuideTree = "fasttree"
+    recurseGuideTree = "veryfasttree"
     recurseThreshold = 200
     
     clustalPath = find_binary("magus_tools/clustal/clustalo")
@@ -71,6 +72,7 @@ class Configs:
     hmmbuildPath = find_binary("magus_tools/hmmer/hmmbuild")
     hmmsearchPath = find_binary("magus_tools/hmmer/hmmsearch")
     fasttreePath = find_binary("magus_tools/fasttree/FastTreeMP")
+    veryfasttreePath = find_binary("magus_tools/veryfasttree/VeryFastTree")
     raxmlPath = find_binary("magus_tools/raxmlng/raxml-ng")
     
     logPath = None
