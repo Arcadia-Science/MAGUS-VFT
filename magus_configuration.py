@@ -80,6 +80,7 @@ class Configs:
     debugPath = None
     
     numCores = 1
+    numCores_vft = 1
     searchHeapLimit = 5000
     alignmentSizeLimit = 100
     

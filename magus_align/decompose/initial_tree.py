@@ -41,7 +41,7 @@ def buildInitialTree(context, workingDir, treeType):
         Configs.log("Building PASTA-style VeryFastTree initial tree on {} with skeleton size {}..".format(context.sequencesPath, Configs.decompositionSkeletonSize))
         alignPath = os.path.join(tempDir, "initial_align.txt")
         buildInitialAlignment(context.unalignedSequences, tempDir, Configs.decompositionSkeletonSize, None, alignPath)
-        external_tools.runVeryFastTree(alignPath, tempDir, outputTreePath, "normal", Configs.numCores).run()
+        external_tools.runVeryFastTree(alignPath, tempDir, outputTreePath, "normal", Configs.numCores_vft).run()
     elif treeType is None or treeType.lower() == "fasttree": 
         Configs.log("Building PASTA-style FastTree initial tree on {} with skeleton size {}..".format(context.sequencesPath, Configs.decompositionSkeletonSize))
         alignPath = os.path.join(tempDir, "initial_align.txt")

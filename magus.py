@@ -62,7 +62,9 @@ def parseArgs():
     parser.add_argument("-np", "--numprocs", type=int,
                         help="Number of processors to use (default: # cpus available)",
                         required=False, default=-1)
-    
+    parser.add_argument("-np_vft", "--numprocs_vft", type=int,
+                        help="Number of processors to use for veryfasttree (default: 1)",
+                        required=False, default=1)
     parser.add_argument("--maxsubsetsize", type=int,
                         help="Maximum subset size for divide-and-conquer",
                         required=False, default=50)
