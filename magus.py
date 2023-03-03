@@ -1,7 +1,8 @@
 '''
 Created on Apr 14, 2020
-
 @author: Vlad
+
+Modified Mar 1, 2023 by austinhpatton
 '''
 
 import time
@@ -55,8 +56,8 @@ def parseArgs():
                         help="Output alignment path", required=True)
     
     parser.add_argument("-t", "--guidetree", type=str,
-                        help="Guide tree for subset decomposition. fasttree (default), fasttree-noml, clustal, parttree, or path to user guide tree",
-                        required=False, default="fasttree")
+                        help="Guide tree for subset decomposition. veryfasttree (default), fasttree, fasttree-noml, clustal, parttree, or path to user guide tree",
+                        required=False, default="veryfasttree")
 
     parser.add_argument("-np", "--numprocs", type=int,
                         help="Number of processors to use (default: # cpus available)",
@@ -125,7 +126,7 @@ def parseArgs():
                         help="Allow MAGUS to recurse on large subsets (true or false)", required=False, default="true")
     
     parser.add_argument("--recurseguidetree", type=str,
-                        help="If recursing, passes this argument as the guide tree option to the lower levels. (Default fasttree)", required=False, default="fasttree")
+                        help="If recursing, passes this argument as the guide tree option to the lower levels. (Default veryfasttree)", required=False, default="veryfasttree")
     
     parser.add_argument("--recursethreshold", type=int,
                         help="MAGUS will recursively align subsets above this threshold size", required=False, default=200)

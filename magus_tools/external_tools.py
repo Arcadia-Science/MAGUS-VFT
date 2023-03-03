@@ -1,7 +1,8 @@
 '''
 Created on Apr 14, 2020
-
 @author: Vlad
+
+Modified Mar 1, 2023 by austinhpatton
 '''
 
 import subprocess
@@ -97,6 +98,33 @@ def runFastTree(fastaFilePath, workingDir, outputPath, mode = "normal", intree =
         args.extend(["-intree", intree])
     
     if mode == "fast":
+        args.extend(["-fastest", "-nosupport"]) 
+    elif mode == "faster":
+        args.extend(["-fastest", "-nosupport", "-mlnni", "4" ]) 
+    elif mode == "noml":
+        args.extend(["-fastest", "-nosupport", "-noml"])
+    
+    args.extend([fastaFilePath, ">", tempPath])
+    taskArgs = {"command" : subprocess.list2cmdline(args), "fileCopyMap" : {tempPath : outputPath}, "workingDir" : workingDir}
+    return Task(taskType = "runCommand", outputFile = outputPath, taskArgs = taskArgs)
+
+def runVeryFastTree(fastaFilePath, workingDir, outputPath, mode = "exhaustive", threads = 1, intree = None):
+    tempPath = os.path.join(os.path.dirname(outputPath), "temp_{}".format(os.path.basename(outputPath)))
+    
+    args = [Configs.veryfasttreePath]
+    if Configs.inferDataType(fastaFilePath) == "protein":
+        args.extend(["-lg"])
+    else:
+        args.extend(["-nt", "-gtr"])
+    
+    if intree is not None:
+        args.extend(["-intree", intree])
+
+    if mode == "exhaustive":
+        args.extend(["-nosupport", "-cat", "20", "-gamma", "-sprlength", "50", "-threads", str(threads)])
+    elif mode == "normal":
+        args.extend(["-nosupport", "-threads", str(threads)])
+    elif mode == "fast":
         args.extend(["-fastest", "-nosupport"]) 
     elif mode == "faster":
         args.extend(["-fastest", "-nosupport", "-mlnni", "4" ]) 

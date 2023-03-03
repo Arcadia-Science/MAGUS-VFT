@@ -1,6 +1,25 @@
 # MAGUS
 Multiple Sequence Alignment using Graph Clustering
 
+## Modifications in this Fork:
+The MAGUS repo was forked on @austinhpatton on March 1, 2023, and has been modified to be able to infer guide trees using VeryFastTree (v3.2.1). VeryFastTree is now the default method for guide tree inference due to its improved capacity for parallelization and thus increased scalability. By default, guide trees are inferred using a more exhaustive tree search, using an SPR radius of 50 and inclusion of site-rate heterogeneity (parameters --cat 20 & --gamma). 
+These changes have been implemented through modification of the following files:
+ 1. `magus.py`
+ 2. `magus_configuration.py`
+ 3. `setup.py`
+ 4. `magus_tools/external_tools.py`
+ 5. `magus_align/decompose/initial_tree.py`
+
+Additionally, the binary for VeryFastTree is now included:
+ - `magus_tools/veryfasttree/VeryFastTree`
+
+The binary was compiled from source, using release v3.2.1:
+ - `https://github.com/citiususc/veryfasttree/tree/v3.2.1`
+
+A Dockerfile to generate a docker image of this modified version of MAGUS is hosted within the `Arcadia-Science/PhylOrthology` workflow repository, and a static docker image is hosted on the Arcadia-Science dockerhub:
+ - `https://github.com/Arcadia-Science/phylorthology/tree/main/docker/magus/Dockerfile`
+ - `arcadiascience/vft-magus_0.1.0:0.0.1`
+
 - - - -
 
 ## Purpose and Functionality

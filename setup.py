@@ -2,7 +2,6 @@ import setuptools
 from setuptools import find_packages
 import os
 
-# https://stackoverflow.com/a/36693250/13241395
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
@@ -16,13 +15,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="magus-msa",
     version="0.1.0",
-    author="vlasmirnov",
+    author="vlasmirnov & austinhpatton",
     description="Multiple Sequence Alignment using Graph Clustering",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/vlasmirnov/MAGUS",
+    url="https://github.com/Arcadia-Science/MAGUS-VFT",
     project_urls={
-        "Bug Tracker": "https://github.com/vlasmirnov/MAGUS/issues",
+        "Bug Tracker": "https://github.com/Arcadia-Science/MAGUS-VFT/issues",
     },
     entry_points={
         'console_scripts': [
